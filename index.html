@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia Feminina Adnanref - 27 anos transformando mulheres</title>
+    <meta name="description" content="Academia 100% feminina em Praia Grande/SP.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin:0; }
+
+        header {
+            background:#ff6b9d;
+            color:white;
+            padding:15px;
+            position:fixed;
+            width:100%;
+            top:0;
+        }
+
+        .hero {
+            margin-top:80px;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#333;
+            color:white;
+            text-align:center;
+        }
+
+        .btn {
+            padding:12px 25px;
+            border-radius:25px;
+            text-decoration:none;
+            margin:5px;
+        }
+
+        .btn-primary { background:#ff6b9d; color:white; }
+        .btn-secondary { border:2px solid white; color:white; }
+
+        .contact { padding:50px; background:#ff6b9d; color:white; }
+
+        .status-badge {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            background: red;
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .status-badge.open { background: green; }
+    </style>
+</head>
+<body>
+
+<header>
+    Academia Adnanref
+    <a href="https://wa.me/551334956410" target="_blank" style="float:right;color:white;">WhatsApp</a>
+</header>
+
+<div class="status-badge" id="statusBadge">Carregando...</div>
+
+<section class="hero">
+    <div>
+        <h1>Academia Feminina</h1>
+        <p>27 anos transformando mulheres</p>
+        <a href="#contact" class="btn btn-primary">Agendar</a>
+        <a href="https://wa.me/551334956410" target="_blank" class="btn btn-secondary">WhatsApp</a>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Contato</h2>
+
+    <form onsubmit="submitForm(event)">
+        <input type="text" placeholder="Seu nome" required><br><br>
+        <input type="tel" placeholder="Seu WhatsApp" required><br><br>
+        <textarea rows="4" placeholder="Mensagem" required></textarea><br><br>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+<!-- BOTÃO FLUTUANTE -->
+<a href="https://wa.me/551334956410" target="_blank" style="
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: #25D366;
+color: white;
+padding: 15px;
+border-radius: 50%;
+font-size: 22px;">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+// FORMULÁRIO
+function submitForm(e) {
+    e.preventDefault();
+
+    const nome = document.querySelector('input').value;
+    const tel = document.querySelector('input[type="tel"]').value;
+    const msg = document.querySelector('textarea').value;
+
+    const texto = `Olá, sou ${nome}%0AWhatsApp: ${tel}%0AMensagem: ${msg}`;
+
+    window.open(`https://wa.me/551334956410?text=${texto}`, '_blank');
+}
+
+// STATUS
+function atualizarStatus() {
+    const h = new Date().getHours();
+    const d = new Date().getDay();
+    const el = document.getElementById("statusBadge");
+
+    if ((d>=1 && d<=5 && h>=6 && h<22) || (d==6 && h>=8 && h<12)) {
+        el.innerHTML = "🟢 Aberto agora";
+        el.classList.add("open");
+    } else {
+        el.innerHTML = "🔴 Fechado";
+        el.classList.remove("open");
+    }
+}
+
+atualizarStatus();
+setInterval(atualizarStatus,60000);
+</script>
+
+</body>
+</html>
