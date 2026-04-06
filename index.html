@@ -9,95 +9,105 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Poppins,sans-serif;}
+/* RESET E FONTES */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:Poppins, sans-serif; background-color:#F5F5F5;}
 
-header{
-background: linear-gradient(45deg, #1E3A8A, #00BFA6);
-color:#fff;
-position:fixed;
-width:100%;
-top:0;
-padding:15px;
-z-index:1000;
+/* CABEÇALHO */
+header {
+  background-color: #1A1A2E; /* azul marinho escuro */
+  color: #FFFFFF;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 15px;
+  z-index: 1000;
 }
 
-.btn-primary{
-background: linear-gradient(45deg, #1E3A8A, #00BFA6);
-color:#fff;
+/* BOTÕES */
+.btn {
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+  transition: 0.3s;
 }
 
-.contact{
-background: linear-gradient(45deg, #1E3A8A, #00BFA6);
-color:#fff;
+.btn-primary {
+  background-color: #FF7F50; /* coral acento */
+  color: #FFFFFF;
 }
 
-.hero{
-height:100vh;
-background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74');
-background-size: cover;
-background-position: center;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding-top:80px;
+.btn-primary:hover {
+  background-color: #e76b3e; /* efeito hover suave */
 }
 
-.btn{
-padding:12px 25px;
-border-radius:25px;
-text-decoration:none;
-display:inline-block;
-margin:10px;
+.btn-secondary {
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
 }
 
-.btn-primary{background:#ff6b9d;color:#fff;}
-.btn-secondary{border:2px solid #fff;color:#fff;}
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74');
+  background-size: cover;
+  background-position: center;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
 
-section{padding:80px 20px;}
+/* SEÇÕES */
+section {
+  padding: 80px 20px;
+}
 
-.contact{
-background:#ff6b9d;
-color:#fff;
+/* CONTATO / FOOTER */
+.contact {
+  background-color: #1A1A2E; /* azul marinho escuro */
+  color: #FFFFFF;
 }
 
 .contact-form input,
-.contact-form textarea{
-width:100%;
-padding:12px;
-margin-bottom:10px;
-border:none;
-border-radius:10px;
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 10px;
 }
 
-/* BOTÃO FLUTUANTE */
-.whatsapp-float{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:#fff;
-font-size:28px;
-padding:15px;
-border-radius:50%;
-z-index:1000;
+/* BOTÃO FLUTUANTE WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: #FFFFFF;
+  font-size: 28px;
+  padding: 15px;
+  border-radius: 50%;
+  z-index: 1000;
 }
 
-/* STATUS */
-.status-badge{
-position:fixed;
-top:80px;
-right:20px;
-background:red;
-color:#fff;
-padding:10px 20px;
-border-radius:20px;
+/* STATUS BADGE */
+.status-badge {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: red;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: 20px;
 }
 
-.status-badge.open{background:green;}
+.status-badge.open {background: green;}
 </style>
 </head>
 
@@ -141,39 +151,42 @@ Enviar pelo WhatsApp
 
 <script>
 function submitForm(e){
-e.preventDefault();
+  e.preventDefault();
 
-const nome=document.getElementById('nome').value;
-const telefone=document.getElementById('telefone').value;
-const mensagem=document.getElementById('mensagem').value;
+  const nome = document.getElementById('nome').value;
+  const telefone = document.getElementById('telefone').value;
+  const mensagem = document.getElementById('mensagem').value;
 
-const texto=`Olá! Me chamo ${nome}%0A📞 ${telefone}%0A💬 ${mensagem}`;
-window.open(`https://wa.me/551334956410?text=${texto}`);
+  const texto = `Olá! Me chamo ${nome}%0A📞 ${telefone}%0A💬 ${mensagem}`;
+  window.open(`https://wa.me/551334956410?text=${texto}`);
 }
 
 function atualizarStatus(){
-const agora=new Date();
-const h=agora.getHours();
-const d=agora.getDay();
-const badge=document.getElementById("statusBadge");
+  const agora = new Date();
+  const h = agora.getHours();
+  const d = agora.getDay();
+  const badge = document.getElementById("statusBadge");
 
-if(d>=1 && d<=5){
-if(h>=6 && h<22){
-badge.innerHTML="🟢 Aberto agora";
-badge.classList.add("open");
-}else{
-badge.innerHTML="🔴 Fechado - Abre 06:00";
-}
-}else if(d==6){
-if(h>=8 && h<12){
-badge.innerHTML="🟢 Aberto agora";
-badge.classList.add("open");
-}else{
-badge.innerHTML="🔴 Fechado - Abre 08:00";
-}
-}else{
-badge.innerHTML="🔴 Fechado hoje";
-}
+  if(d >= 1 && d <= 5){
+    if(h >= 6 && h < 22){
+      badge.innerHTML = "🟢 Aberto agora";
+      badge.classList.add("open");
+    } else {
+      badge.innerHTML = "🔴 Fechado - Abre 06:00";
+      badge.classList.remove("open");
+    }
+  } else if(d == 6){
+    if(h >= 8 && h < 12){
+      badge.innerHTML = "🟢 Aberto agora";
+      badge.classList.add("open");
+    } else {
+      badge.innerHTML = "🔴 Fechado - Abre 08:00";
+      badge.classList.remove("open");
+    }
+  } else {
+    badge.innerHTML = "🔴 Fechado hoje";
+    badge.classList.remove("open");
+  }
 }
 
 atualizarStatus();
